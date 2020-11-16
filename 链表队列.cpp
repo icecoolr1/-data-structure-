@@ -2,37 +2,37 @@
 using namespace std;
 
 /*
-¶ÓÁĞÏÈ½øÏÈ³ö
-front¸ºÔğ³ö
-rear¸ºÔğ½ø
+é˜Ÿåˆ—å…ˆè¿›å…ˆå‡º
+frontè´Ÿè´£å‡º
+rearè´Ÿè´£è¿›
 
 */
 
 /*
-Óöµ½µÄÎÊÌâ:
-1:Node ºÍ QueneÔÚ±àĞ´¹ı³ÌÖĞÓĞ»ìÏı ĞÂ½¨½áµãÓ¦¸ÃÊÇpNode
-2:enhQuene·½·¨Ã»ÓĞ°´×¢ÊÍĞ´×îºóÒ»²½
-3:front´¢´æÃ»ÓĞÊµ¼ÊµÄÊı¾İÓò ËùÒÔ±éÀúÊ±Òª´Ófront->pnext¿ªÊ¼
+é‡åˆ°çš„é—®é¢˜:
+1:Node å’Œ Queneåœ¨ç¼–å†™è¿‡ç¨‹ä¸­æœ‰æ··æ·† æ–°å»ºç»“ç‚¹åº”è¯¥æ˜¯pNode
+2:enhQueneæ–¹æ³•æ²¡æœ‰æŒ‰æ³¨é‡Šå†™æœ€åä¸€æ­¥
+3:frontå‚¨å­˜æ²¡æœ‰å®é™…çš„æ•°æ®åŸŸ æ‰€ä»¥éå†æ—¶è¦ä»front->pnextå¼€å§‹
 
 */
 
 typedef struct Node
 {
-	int date;//Êı¾İÓò
-	struct Node* pNext;//Ö¸ÕëÓò
+	int date;//æ•°æ®åŸŸ
+	struct Node* pNext;//æŒ‡é’ˆåŸŸ
 }NODE, * PNODE;
 
 typedef struct LQueue
 {
-	PNODE front;//¶ÓÊ×½áµãÖ¸Õë
-	PNODE rear;//¶ÓÎ²½áµãÖ¸Õë
+	PNODE front;//é˜Ÿé¦–ç»“ç‚¹æŒ‡é’ˆ
+	PNODE rear;//é˜Ÿå°¾ç»“ç‚¹æŒ‡é’ˆ
 }QUENE, * PQUENE;
 
-void init(PQUENE p);//³õÊ¼»¯
-bool isEmpty(PQUENE p);//ÅĞ¿Õ
-void outQuene(PQUENE p);//³ö¶Ó
-void enhQuene(PQUENE p, int t);//Èë¶Ó
-void travser(PQUENE p);//±éÀúÊä³ö
+void init(PQUENE p);//åˆå§‹åŒ–
+bool isEmpty(PQUENE p);//åˆ¤ç©º
+void outQuene(PQUENE p);//å‡ºé˜Ÿ
+void enhQuene(PQUENE p, int t);//å…¥é˜Ÿ
+void travser(PQUENE p);//éå†è¾“å‡º
 
 int main() {
 	QUENE qnode;
@@ -50,10 +50,10 @@ int main() {
 }
 
 void init(PQUENE p) {
-	//³õÊ¼»¯Í·½áµãºÍÎ²½áµãÔÚÍ¬Ò»¸öĞÂ½áµã£¬²¢½«Í·½áµã»òÎ²½áµãÖ¸ÕëÓòÉèÎª¿Õ
+	//åˆå§‹åŒ–å¤´ç»“ç‚¹å’Œå°¾ç»“ç‚¹åœ¨åŒä¸€ä¸ªæ–°ç»“ç‚¹ï¼Œå¹¶å°†å¤´ç»“ç‚¹æˆ–å°¾ç»“ç‚¹æŒ‡é’ˆåŸŸè®¾ä¸ºç©º
 	p->front = (PNODE)malloc(sizeof(Node));
 	if (p->front == NULL) {
-		cout << "´´½¨½ÚµãÊ§°Ü!" << endl;
+		cout << "åˆ›å»ºèŠ‚ç‚¹å¤±è´¥!" << endl;
 		exit(-1);
 	}
 	p->rear = p->front;
@@ -61,7 +61,7 @@ void init(PQUENE p) {
 }
 
 bool isEmpty(PQUENE p) {
-	//ÅĞ¶ÏÍ·½ÚµãºÍÎ²½ÚµãµØÖ·ÊÇ·ñÏàÍ¬
+	//åˆ¤æ–­å¤´èŠ‚ç‚¹å’Œå°¾èŠ‚ç‚¹åœ°å€æ˜¯å¦ç›¸åŒ
 	if (p->front == p->rear) {
 		return true;
 	}
@@ -71,10 +71,10 @@ bool isEmpty(PQUENE p) {
 }
 
 void enhQuene(PQUENE p, int t) {
-	//³õÊ¼»¯Ò»¸öĞÂµÄ½ÚµãpNew ½«ÖµT¸³¸øpnewµÄÊı¾İÓò ½« rearµÄÖ¸ÕëÓòÖ¸ÏòpNew pnewµÄÖ¸ÕëÓòÖ¸ÏòNULL ½«pNew¸³¸ørear
+	//åˆå§‹åŒ–ä¸€ä¸ªæ–°çš„èŠ‚ç‚¹pNew å°†å€¼Tèµ‹ç»™pnewçš„æ•°æ®åŸŸ å°† rearçš„æŒ‡é’ˆåŸŸæŒ‡å‘pNew pnewçš„æŒ‡é’ˆåŸŸæŒ‡å‘NULL å°†pNewèµ‹ç»™rear
 	PNODE pNew = (PNODE)malloc(sizeof(Node));
 	if (pNew == NULL) {
-		cout << "´´½¨½ÚµãÊ§°Ü!" << endl;
+		cout << "åˆ›å»ºèŠ‚ç‚¹å¤±è´¥!" << endl;
 		exit(-1);
 	}
 	pNew->date = t;
@@ -83,11 +83,11 @@ void enhQuene(PQUENE p, int t) {
 	p->rear = pNew;
 }
 
-//Ò»¿ªÊ¼½«´Ë·½·¨ÍêÈ«Àà±ÈÎªÕ»µÄ³öÕ»·½·¨ ºó¾­¹ıÑĞ¾¿ Õ»µÄ³öÕ»ºÍ¶ÓµÄ³öÕ»ÓĞ²î±ğ ÒòÎªÕ»¶¥ÊÇ´¢´æÓĞÒâÒåµÄÖµµÄ
-//¶ø¶ÓÊ×ÔòÖ»´æ´¢Ö¸ÕëÓò ËùÒÔÓ¦½«¶ÓÊ×µÄÏÂÒ»¸ö½áµãÊÍ·Å ¶ø²»ÊÇµ¥´¿µØÉ¾³ıÍ·Ö¸Õë
+//ä¸€å¼€å§‹å°†æ­¤æ–¹æ³•å®Œå…¨ç±»æ¯”ä¸ºæ ˆçš„å‡ºæ ˆæ–¹æ³• åç»è¿‡ç ”ç©¶ æ ˆçš„å‡ºæ ˆå’Œé˜Ÿçš„å‡ºæ ˆæœ‰å·®åˆ« å› ä¸ºæ ˆé¡¶æ˜¯å‚¨å­˜æœ‰æ„ä¹‰çš„å€¼çš„
+//è€Œé˜Ÿé¦–åˆ™åªå­˜å‚¨æŒ‡é’ˆåŸŸ æ‰€ä»¥åº”å°†é˜Ÿé¦–çš„ä¸‹ä¸€ä¸ªç»“ç‚¹é‡Šæ”¾ è€Œä¸æ˜¯å•çº¯åœ°åˆ é™¤å¤´æŒ‡é’ˆ
 
 //void outQuene(PQUENE p) {
-//	//½«frontµÄÏÂÒ»¸ö½áµãµÄµØÖ·¸³¸øfront  free ptem
+//	//å°†frontçš„ä¸‹ä¸€ä¸ªç»“ç‚¹çš„åœ°å€èµ‹ç»™front  free ptem
 //	PNODE ptem;
 //	ptem = p->front;
 //	p->front = p->front->pNext;
@@ -96,10 +96,10 @@ void enhQuene(PQUENE p, int t) {
 //}
 
 void outQuene(PQUENE p) {
-	//½«FrontµÄÊ×½áµãÖ¸ÏòÊ×½áµãµÄÏÂÒ»¸ö½áµã freeÊ×½áµã
+	//å°†Frontçš„é¦–ç»“ç‚¹æŒ‡å‘é¦–ç»“ç‚¹çš„ä¸‹ä¸€ä¸ªç»“ç‚¹ freeé¦–ç»“ç‚¹
 	PNODE ptem = p->front->pNext;
 	p->front->pNext = ptem->pNext;
-	//Èç¹ûÖ»ÓĞÒ»¸öÔªËØ ³ıÍ·½áµãÍâ
+	//å¦‚æœåªæœ‰ä¸€ä¸ªå…ƒç´  é™¤å¤´ç»“ç‚¹å¤–
 	if (ptem == p->rear) {
 		p->rear = p->front;
 	}
@@ -107,6 +107,7 @@ void outQuene(PQUENE p) {
 	ptem = NULL;
 }
 void travser(PQUENE p) {
+	//å¤´ç»“ç‚¹ä¸å­˜å‚¨æ•°æ® æ‰€ä»¥ä»é¦–ç»“ç‚¹å¼€å§‹
 	PNODE ptem = p->front->pNext;
 	while (ptem) {
 		cout << ptem->date << " ";
