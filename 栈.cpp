@@ -3,7 +3,6 @@ using namespace std;
 
 /*
 	链栈
-
 */
 
 typedef struct NODE {
